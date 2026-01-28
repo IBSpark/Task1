@@ -14,6 +14,7 @@ export default function Footer(){
           <Link to="/cookie prefernce">Cookie Preferences</Link>
           <Link to="/company info">Company Info</Link>
           <Link to="/about">About</Link>
+          <Link to ="/blog">Blog</Link>
         </div>
       </footer>
         </>
