@@ -12,7 +12,7 @@ export default function Home() {
           <span className="ai-text">AI Text to Voice</span>
         </div>
 
-        <Link to ="/signIn" className="sign-in">
+        <Link to ="/signin" className="sign-in">
           Sign In
         </Link >
       </header>
