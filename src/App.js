@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router , Routes , Route} from 'react-router-dom';
+import {hashRouter as Router , Routes , Route} from 'react-router-dom';
 import Home from './Home';
 import Footer from './Footer';
 import FAQ from './FAQ';
