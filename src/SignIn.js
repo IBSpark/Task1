@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SignIn.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function SignIn() {
   const [isSignup, setIsSignup] = useState(false);
@@ -8,12 +9,10 @@ export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  // Proper email regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleEmailChange = (value) => {
     setEmail(value);
-
     if (!emailRegex.test(value)) {
       setError("Invalid email address");
     } else {
@@ -26,68 +25,118 @@ export default function SignIn() {
       setError("Invalid email address");
       return;
     }
-
     if (password.length < 6) {
       setError("Password must be at least 6 characters");
       return;
     }
-
     setError("");
     alert(isSignup ? "Sign Up Successful " : "Login Successful ");
   };
 
+  // Page variants
+  const pageVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+  };
+
+  // Input/button animation
+  const itemVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+  };
+
   return (
-    <div className="main">
-      <div className="container">
-        <h2>{isSignup ? "Sign Up" : "Login"}</h2>
+    <AnimatePresence>
+      <motion.div
+        className="main"
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pageVariants}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div
+          className="container"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ staggerChildren: 0.15 }}
+        >
+          <motion.h2 variants={itemVariants}>{isSignup ? "Sign Up" : "Login"}</motion.h2>
 
-        {isSignup && (
-          <input type="text" placeholder="Full Name" className="fade-in" />
-        )}
+          {isSignup && (
+            <motion.input
+              type="text"
+              placeholder="Full Name"
+              className="fade-in"
+              variants={itemVariants}
+            />
+          )}
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => handleEmailChange(e.target.value)}
-        />
-
-        {/* Password */}
-        <div className="password-wrapper">
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+          <motion.input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => handleEmailChange(e.target.value)}
+            variants={itemVariants}
           />
 
-          <i
-            className={`bi ${
-              showPassword ? "bi-eye-slash-fill" : "bi-eye-fill"
-            } toggle-password`}
-            onClick={() => setShowPassword(!showPassword)}
-          ></i>
-        </div>
+          <motion.div className="password-wrapper" variants={itemVariants}>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i
+              className={`bi ${showPassword ? "bi-eye-slash-fill" : "bi-eye-fill"} toggle-password`}
+              onClick={() => setShowPassword(!showPassword)}
+            ></i>
+          </motion.div>
 
-        {error && <p className="error shake">{error}</p>}
+          {error && (
+            <motion.p className="error shake" variants={itemVariants}>
+              {error}
+            </motion.p>
+          )}
 
-        <button onClick={handleSubmit}>
-          {isSignup ? "Sign Up" : "Login"}
-        </button>
-            <p className="toggle">
-  Don't have an account?
-  <span
-    className="toggle-link"
-    onClick={() => {
-      setIsSignup(true);
-      setError("");
-    }}
-  >
-    {" "}Sign up
-  </span>
-</p>
-       
-      </div>
-    </div>
+          <motion.button onClick={handleSubmit} variants={itemVariants}>
+            {isSignup ? "Sign Up" : "Login"}
+          </motion.button>
+
+          <motion.p className="toggle" variants={itemVariants}>
+            {isSignup ? (
+              <>
+                Already have an account?
+                <span
+                  className="toggle-link"
+                  onClick={() => {
+                    setIsSignup(false);
+                    setError("");
+                  }}
+                >
+                  {" "}Sign In
+                </span>
+              </>
+            ) : (
+              <>
+                Don't have an account?
+                <span
+                  className="toggle-link"
+                  onClick={() => {
+                    setIsSignup(true);
+                    setError("");
+                  }}
+                >
+                  {" "}Sign Up
+                </span>
+              </>
+            )}
+          </motion.p>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
