@@ -1,0 +1,141 @@
+/* Page wrapper for Framer Motion */
+.manage-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f6fa;
+}
+
+/* Main container */
+.manage-container {
+  max-width: 450px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.manage-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #161616;
+}
+
+/* Labels */
+.manage-container label {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Inputs */
+.manage-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input focus */
+.manage-container input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+/* Password wrapper */
+.password-wrapper {
+  position: relative;
+}
+
+/* Space for eye icon */
+.password-wrapper input {
+  padding-right: 40px;
+}
+
+/* Eye icon */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.toggle-password:hover {
+  color: #667eea;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Update button */
+.btn-update {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #161616;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.btn-update:hover {
+  background: #5a67d8;
+}
+
+.btn-update:active {
+  transform: scale(0.98);
+}
+
+/* Error message */
+.error {
+  color: #e53935;
+  font-weight: 500;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+/* Success message */
+.message {
+  color: #2e7d32;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* Back link */
+.back-home {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-home a {
+  text-decoration: none;
+  color: #060606;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.back-home a:hover {
+  text-decoration: underline;
+  color: #667eea;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .manage-container {
+    padding: 20px;
+    margin: 20px;
+  }
+}

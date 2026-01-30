@@ -24,7 +24,9 @@ export default function Home() {
           </h1>
 
           <button className="btn btn-primary">Generate AI Voice</button>
-          <button className="btn btn-secondary">Manage Account</button>
+          <Link to="/manageaccount" className="btn btn-secondary">Manage Account</Link>
+
+          {/* <button className="btn btn-secondary">Manage Account</button> */}
         </div>
       </main>
     </>

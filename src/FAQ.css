@@ -4,6 +4,9 @@
   background: #f7f6f6;
   color: #ffffff;
   padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Title */
@@ -18,6 +21,7 @@
 /* Container */
 .faq-container {
   max-width: 800px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -45,6 +49,12 @@
 .faq-icon {
   font-size: 22px;
   color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate icon when active */
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
 }
 
 /* Answer */
@@ -53,6 +63,7 @@
   font-size: 15px;
   line-height: 1.6;
   color: #cccccc;
+  overflow: hidden; /* Important for height animation */
 }
 
 /* Hover */
